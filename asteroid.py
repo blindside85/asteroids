@@ -1,4 +1,5 @@
 import pygame
+import random
 from constants import *
 from circleshape import CircleShape
 
@@ -21,3 +22,14 @@ class Asteroid(CircleShape):
 
         # else spawn 2 new asteroids
         print("Oohh I'm a big boi")
+        trajectory = random.uniform(20, 50)
+        new_vector = self.velocity.rotate(trajectory)
+        new_vector2 = self.velocity.rotate(-trajectory)
+        new_radius = self.radius - ASTEROID_MIN_RADIUS
+        
+        asteroid = Asteroid(self.position.x, self.position.y, new_radius)
+        asteroid.velocity = new_vector
+
+        asteroid2 = Asteroid(self.position.x, self.position.y, new_radius)
+        asteroid2.velocity = new_vector2
+
